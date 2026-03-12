@@ -4,6 +4,7 @@ require("dotenv").config();
 
 const headerRoutes = require('./routes/header');
 const passwordRoutes = require('./routes/password');
+const breachRoutes = require('./routes/breach');
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 
 app.use('/api/security', headerRoutes);
 app.use('/api/password', passwordRoutes);
+app.use('/api/breach', breachRoutes);
 
 // Test route
 app.get("/", (req, res) => {

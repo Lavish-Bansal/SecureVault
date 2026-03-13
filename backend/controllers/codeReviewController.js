@@ -32,7 +32,7 @@ const reviewCode = async (req, res) => {
       Return only JSON, no extra text.
     `;
 
-    console.log(code, language, prompt);
+    // console.log(code, language, prompt);
 
     const response = await axios.post(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
@@ -41,13 +41,13 @@ const reviewCode = async (req, res) => {
       }
     );
 
-    console.log(response);
+    // console.log(response);
 
     const rawText = response.data.candidates[0].content.parts[0].text;
     const cleanText = rawText.replace(/```json|```/g, '').trim();
     const result = JSON.parse(cleanText);
 
-    console.log(result);
+    // console.log(result);
 
     res.json(result);
 

@@ -74,10 +74,10 @@ npm run dev
 ## Screenshots
 
 ### Home Page
-![Home](screenshots\HomePageScreenshot.png)
+![Home](screenshots/HomePageScreenshot.png)
 
 ### Password Breach Checker
-![Password Breach](screenshots\BreachCheckerScreenshot.png)
+![Password Breach](screenshots/BreachCheckerScreenshot.png)
 
 ### AI Code Review
-![Code Review](screenshots\AIcodeReviewScreenshot.png)
+![Code Review](screenshots/AIcodeReviewScreenshot.png)

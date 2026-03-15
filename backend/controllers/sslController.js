@@ -26,12 +26,15 @@ const checkSSL = async (req, res) => {
     host: url,
     port: 443,
     rejectUnauthorized: false,
+    minVersion: 'TLSv1', 
+    ciphers: 'ALL',  
+    servername: url
   };
 
   const socket = tls.connect(options, () => {
     const cert = socket.getPeerCertificate();
 
-    console.log("cert", cert);
+    // console.log("cert", cert);
 
     if (!cert || Object.keys(cert).length === 0) {
       socket.destroy();
@@ -44,7 +47,7 @@ const checkSSL = async (req, res) => {
 
     const daysRemaining = Math.floor((validTo - now) / (1000 * 60 * 60 * 24));
 
-    console.log(validFrom, validTo, now, daysRemaining);
+    // console.log(validFrom, validTo, now, daysRemaining);
 
     const isValid = socket.authorized || true;
     const isExpired = now > validTo;
@@ -54,7 +57,7 @@ const checkSSL = async (req, res) => {
     else if (daysRemaining <= 30) status = "Expiring Soon";
     else status = "Valid";
 
-    console.log("socket", socket);
+    // console.log("socket", socket);
 
     socket.destroy();
 
@@ -71,6 +74,7 @@ const checkSSL = async (req, res) => {
   });
 
   socket.on("error", (err) => {
+    console.log(err);
     res.status(500).json({ error: "SSL check failed — " + err.message });
   });
 };
